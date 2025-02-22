@@ -1,0 +1,45 @@
+.auth-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.auth-box {
+	width: 100%;
+	max-width: 400px;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+	display: none;
+}
+
+.card {
+	border-radius: 10px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	color: white;
+	transition: transform 0.2s;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+	transform: scale(1.05);
+}
+
+.btn-primary {
+	background-color: #007bff;
+	border-color: #007bff;
+	border-radius: 5px;
+}
+
+.btn-primary:hover {
+	background-color: #0056b3;
+	border-color: #0056b3;
+}
+
+.text-center a {
+	color: #007bff;
+	font-weight: bold;
+}
+

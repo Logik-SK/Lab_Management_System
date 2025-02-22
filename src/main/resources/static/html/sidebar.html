@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard | HMS</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/dashboard.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- Sidebar -->
+		<!-- Sidebar -->
+		<nav class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<h3>HMS Dashboard</h3>
+				<button class="toggle-btn" onclick="showSidebar()" id="sidebarToggle">
+					☰
+				</button>
+			</div>
+			<ul class="list-unstyled components">
+				<li class="active"><a href="#">Dashboard</a></li>
+				<li><a href="#">Patients</a></li>
+				<li><a href="#">Doctors</a></li>
+				<li><a href="#">Appointments</a></li>
+				<li><a href="#">Billing</a></li>
+				<li><a href="#">Settings</a></li>
+			</ul>
+			<button class="logout-btn">
+				<i class="fas fa-sign-out-alt"></i> Log Out
+			</button>
+		</nav>
+	</div>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+	<script src="js/dashboard.js"></script>
+</body>
+
+</html>

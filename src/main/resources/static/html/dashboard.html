@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard | HMS</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/dashboard.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-container"></div>
+
+		<div class="content">
+			<!-- Navbar -->
+			<nav class="navbar">
+				<span class="navbar-brand">Welcome, Admin</span>
+				<div class="profile-section">
+					<span>Admin</span>
+					<img src="" alt="Profile Picture">
+				</div>
+
+			</nav>
+			<div>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="/login">
+							<i class="fas fa-home"></i> Home
+						</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+				</ol>
+			</div>
+
+			<div class="container mt-4">
+				<div class="row">
+					<div class="col-md-3">
+						<a href="/patients" class="text-decoration-none">
+							<div class="card">
+								<div class="card-body text-center">
+									<i class="fas fa-user-injured fa-2x text-primary"></i>
+									<h5 class="card-title mt-2">Total Patients</h5>
+									<p class="count" id="total-patient-count">250</p>
+								</div>
+							</div>
+					</div>
+					<div class="col-md-3">
+						<a href="/doctors" class="text-decoration-none">
+						<div class="card">
+							<div class="card-body text-center">
+								<i class="fas fa-user-md fa-2x text-success"></i>
+								<h5 class="card-title mt-2">Total Doctors</h5>
+								<p class="count" id="total-doctor-count">35</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<a href="/appointments" class="text-decoration-none">
+						<div class="card">
+							<div class="card-body text-center">
+								<i class="fas fa-calendar-check fa-2x text-warning"></i>
+								<h5 class="card-title mt-2">Appointments</h5>
+								<p class="count" id="total-Appointment-count">120</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<a href="/patients" class="text-decoration-none">
+						<div class="card">
+							<div class="card-body text-center">
+								<i class="fas fa-file-invoice-dollar fa-2x text-danger"></i>
+								<h5 class="card-title mt-2">Billing</h5>
+								<p class="count" id="total-billing-count">12,000</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		&copy; 2024 Hospital Management System
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+	<script src="js/dashboard.js"></script>
+	<script src="js/common.js"></script>
+</body>
+
+</html>

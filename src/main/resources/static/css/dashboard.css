@@ -1,0 +1,189 @@
+
+/* Wrapper for Sidebar & Content */
+.wrapper {
+	display: flex;
+}
+
+
+/* Content Area */
+.content {
+	margin-left: 250px;
+	padding: 20px;
+	width: 100%;
+}
+
+/* Navbar */
+.navbar {
+	background: rgba(255, 255, 255, 0.1);
+	padding: 15px;
+	color: white;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+/* Dashboard Cards */
+.card {
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s;
+	background: rgba(255, 255, 255, 0.1);
+	/* Matching login form */
+	color: white;
+	text-align: center;
+}
+
+.card:hover {
+	transform: scale(1.05);
+}
+
+/* Card Icons */
+.card-body i {
+	font-size: 36px;
+	margin-bottom: 10px;
+}
+
+/* Card Numbers */
+.count {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+
+
+.breadcrumb {
+	background: none;
+	font-size: 16px;
+	display: flex;
+}
+
+.breadcrumb-item a {
+	text-decoration: none;
+	color: #333;
+}
+
+.breadcrumb-item a:hover {
+	color: #007bff;
+}
+
+.breadcrumb-item.active {
+	font-weight: bold;
+	color: #009688;
+}
+
+.navbar,
+.card,
+.footer {
+	backdrop-filter: blur(10px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(50deg, #16222A, #3A6073);
+    color: white;
+    position: fixed;
+    left: -250px; /* Initially hidden */
+    top: 0;
+    transition: left 0.3s ease-in-out;
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Sidebar Active */
+.sidebar.active {
+    left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    
+}
+
+/* Sidebar Close Button */
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Sidebar Menu */
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Logout Button */
+.logout-btn {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background: #c9302c;
+}
+
+/* Toggle Button (Hamburger) */
+.toggle-btn {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #16222A;
+    cursor: pointer;
+}
+
+/* Content Area */
+.content {
+    margin-left: 20px;
+    padding: 20px;
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) {
+    .toggle-btn {
+        display: none; /* Hide toggle button on larger screens */
+    }
+
+    .sidebar {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 250px;
+    }
+}
