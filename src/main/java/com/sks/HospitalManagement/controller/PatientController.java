@@ -120,6 +120,7 @@ public class PatientController {
 	@GetMapping("/{pId}/medical-history")
 	public ResponseEntity<List<MedicalHistory>> gePatientMedicalHistory(@PathVariable Long Pid) {
 		return null;
+		// this method to fetch medical history
 
 	}
 
