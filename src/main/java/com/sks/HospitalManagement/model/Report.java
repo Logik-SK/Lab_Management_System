@@ -19,10 +19,10 @@ public class Report {
 	private String filePath; // File path if stored as a document
 	private boolean isArchived; // Flag to mark archived reports
 
-//	@ManyToOne
-//	@JoinColumn(name = "pId")
-//	@JsonBackReference
-//	private Patient patient;
+	@ManyToOne
+	@JoinColumn(name = "pId")
+	@JsonBackReference
+	private Patient patient;
 
 	@ManyToOne
 	@JoinColumn(name = "dId")
@@ -80,14 +80,14 @@ public class Report {
 	public void setArchived(boolean archived) {
 		isArchived = archived;
 	}
-//
-//	public Patient getPatient() {
-//		return patient;
-//	}
-//
-//	public void setPatient(Patient patient) {
-//		this.patient = patient;
-//	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 	public Doctor getDoctor() {
 		return doctor;

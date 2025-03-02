@@ -1,42 +1,62 @@
 package com.sks.HospitalManagement.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.sks.HospitalManagement.model.Appointment;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.sks.HospitalManagement.model.Patient;
 
 public class PatientTo {
 
+	private long pId;
 	private String name;
 	private int age;
 	private String status;
 	private String department;
 	private String address;
 	private String gender;
-	private Date admissionDate;
-	private Date dischargeDate;
 	private Long contact;
-	private List<Appointment> appointmentList;
 
-	public PatientTo(String name, int age, String status, String department, String address, String gender,
-			Date admissionDate, Date dischargeDate, Long contact, List<Appointment> appointmentList) {
+	@JsonFormat(pattern = "yyyy-MM-dd") // ISO 8601 format (YYYY-MM-DD)
+	private LocalDate admissionDate;
+
+	@JsonFormat(pattern = "yyyy-MM-dd") // ISO 8601 format (YYYY-MM-DD)
+	private LocalDate dischargeDate;
+
+	private List<AppointmentTo> appointmentToList;
+
+	public PatientTo() {
 		super();
-		this.name = name;
-		this.age = age;
-		this.status = status;
-		this.department = department;
-		this.address = address;
-		this.gender = gender;
-		this.admissionDate = admissionDate;
-		this.dischargeDate = dischargeDate;
-		this.contact = contact;
-		this.appointmentList = appointmentList;
+	}
+
+	public PatientTo(Patient patient) {
+		super();
+		this.pId = patient.getpId();
+		this.name = patient.getName();
+		this.age = patient.getAge();
+		this.status = patient.getStatus();
+		this.department = patient.getDepartment();
+		this.address = patient.getAddress();
+		this.gender = patient.getGender();
+		this.contact = patient.getContact();
+		this.admissionDate = patient.getAdmissionDate();
+		this.dischargeDate = patient.getDischargeDate();
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public long getpId() {
+		return pId;
+	}
+
+	public void setpId(long pId) {
+		this.pId = pId;
 	}
 
 	public void setName(String name) {
@@ -83,19 +103,19 @@ public class PatientTo {
 		this.gender = gender;
 	}
 
-	public Date getAdmissionDate() {
+	public LocalDate getAdmissionDate() {
 		return admissionDate;
 	}
 
-	public void setAdmissionDate(Date admissionDate) {
+	public void setAdmissionDate(LocalDate admissionDate) {
 		this.admissionDate = admissionDate;
 	}
 
-	public Date getDischargeDate() {
+	public LocalDate getDischargeDate() {
 		return dischargeDate;
 	}
 
-	public void setDischargeDate(Date dischargeDate) {
+	public void setDischargeDate(LocalDate dischargeDate) {
 		this.dischargeDate = dischargeDate;
 	}
 
@@ -107,18 +127,24 @@ public class PatientTo {
 		this.contact = contact;
 	}
 
-	public List<Appointment> getAppointmentList() {
-		return appointmentList;
+	@JsonBackReference
+	public List<AppointmentTo> getAppointmentToList() {
+		return appointmentToList;
 	}
 
-	public void setAppointmentList(List<Appointment> appointmentList) {
-		this.appointmentList = appointmentList;
+	@JsonInclude(JsonInclude.Include.NON_NULL) // Exclude if null
+	public List<AppointmentTo> getAppointments() {
+		return appointmentToList;
 	}
 
-	public void addAppointment(Appointment appointment) {
-		Optional.ofNullable(appointmentList).orElseGet(() -> {
-			appointmentList = new ArrayList<>();
-			return appointmentList;
+	public void setAppointmentToList(List<AppointmentTo> appointmentList) {
+		this.appointmentToList = appointmentList;
+	}
+
+	public void addAppointment(AppointmentTo appointment) {
+		Optional.ofNullable(appointmentToList).orElseGet(() -> {
+			appointmentToList = new ArrayList<>();
+			return appointmentToList;
 		}).add(appointment);
 
 	}

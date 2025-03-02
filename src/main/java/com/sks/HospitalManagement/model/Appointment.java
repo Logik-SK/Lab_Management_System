@@ -1,10 +1,12 @@
 package com.sks.HospitalManagement.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sks.HospitalManagement.dto.AppointmentTo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,8 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 public class Appointment {
@@ -22,13 +24,10 @@ public class Appointment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long aId;
-
-//	@JsonFormat(pattern = "yyyy-MM-dd") // ISO 8601 format (YYYY-MM-DD)
-//	private LocalDateTime appointmentDate;
-	
-	private Double appointmentFee;
-//	@JsonFormat(pattern = "hh:mm a")
-//	private LocalTime time;
+	@JsonFormat(pattern = "yyyy-MM-dd") // ISO 8601 format (YYYY-MM-DD)
+	private LocalDate appointmentDate;
+	@JsonFormat(pattern = "HH:mm:ss")
+	private LocalTime time;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "dId")
@@ -39,14 +38,11 @@ public class Appointment {
 	@JsonBackReference
 	private Patient patient;
 
+	private Double appointmentFee;
 	private String reason;
 	private String status; // Scheduled, Completed, Canceled
-	//private LocalDateTime createdAt;
-	//private LocalDateTime updatedAt;
-
-//	@OneToOne
-//	@JoinColumn(name = "appointment_id")
-//	private Appointment appointment;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 
 	public Long getaId() {
 		return aId;
@@ -56,13 +52,13 @@ public class Appointment {
 		this.aId = aId;
 	}
 
-//	public LocalDateTime getAppointmentDate() {
-//		return appointmentDate;
-//	}
-//
-//	public void setAppointmentDate(LocalDateTime appointmentDate) {
-//		this.appointmentDate = appointmentDate;
-//	}
+	public LocalDate getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	public void setAppointmentDate(LocalDate appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
 
 	public Double getAppointmentFee() {
 		return appointmentFee;
@@ -80,13 +76,13 @@ public class Appointment {
 //		this.doctor = doctor;
 //	}
 
-//	public Patient getPatient() {
-//		return patient;
-//	}
-//
-//	public void setPatient(Patient patient) {
-//		this.patient = patient;
-//	}
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 	public String getReason() {
 		return reason;
@@ -104,28 +100,55 @@ public class Appointment {
 		this.status = status;
 	}
 
-//	public LocalDateTime getCreatedAt() {
-//		return createdAt;
-//	}
-//
-//	public void setCreatedAt(LocalDateTime createdAt) {
-//		this.createdAt = createdAt;
-//	}
-//
-//	public LocalDateTime getUpdatedAt() {
-//		return updatedAt;
-//	}
-//
-//	public void setUpdatedAt(LocalDateTime updatedAt) {
-//		this.updatedAt = updatedAt;
-//	}
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
 
-//	public Appointment getAppointment() {
-//		return appointment;
-//	}
-//
-//	public void setAppointment(Appointment appointment) {
-//		this.appointment = appointment;
-//	}
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = LocalDateTime.now();
+	}
+
+	public Appointment(AppointmentTo appointmentTo) {
+		super();
+		this.aId = appointmentTo.getaId();
+		this.appointmentDate = appointmentTo.getAppointmentDate();
+		this.time = appointmentTo.getTime();
+		this.appointmentFee = appointmentTo.getAppointmentFee();
+		this.reason = appointmentTo.getReason();
+		this.status = appointmentTo.getStatus();
+		this.createdAt = null;
+		this.updatedAt = null;
+	}
 
 }

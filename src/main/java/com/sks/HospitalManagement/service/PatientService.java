@@ -1,35 +1,34 @@
 package com.sks.HospitalManagement.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.sks.HospitalManagement.dto.PatientTo;
+import com.sks.HospitalManagement.mapper.Mapper;
 import com.sks.HospitalManagement.model.Patient;
-import com.sks.HospitalManagement.repository.IAppointmentRepository;
 import com.sks.HospitalManagement.repository.IPatientRepository;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class PatientService {
 	@Autowired
 	IPatientRepository patientRepository;
 
-	public List<Patient> getAllPatients() {
+	public List<PatientTo> getAllPatients() {
 
-		return patientRepository.findAll();
+		List<Patient> patientlList = patientRepository.findAll();
+		return patientlList.stream().map(patient -> Mapper.toDto(patient)).collect(Collectors.toList());
 	}
 
-	public Patient addPatient(Patient patient) {
+	public Patient addPatient(PatientTo patientTo) {
 
-		return patientRepository.save(patient);
+		return patientRepository.save(Mapper.toEntity(patientTo));
+
 	}
 
 	public boolean deletePatient(Long pId) {
@@ -71,20 +70,20 @@ public class PatientService {
 
 	}
 
-	public List<PatientTo> searchPatientByName(String pName) {
-		if (!StringUtils.hasText(pName)) {
-			return new ArrayList<PatientTo>();
-		}
-		List<Patient> patientList = patientRepository.findByNameContainingIgnoreCase(pName);
-		List<PatientTo> patientToList = new ArrayList<PatientTo>();
-		Optional.ofNullable(patientList).ifPresent(pL -> {
-			pL.forEach(p -> {
-				patientToList.add(new PatientTo(p.getName(), p.getAge(), p.getStatus(), null, null, null, null, null,
-						null, null));
-			});
-		});
-		return patientToList;
-
-	}
+//	public List<PatientTo> searchPatientByName(String pName) {
+//		if (!StringUtils.hasText(pName)) {
+//			return new ArrayList<PatientTo>();
+//		}
+//		List<Patient> patientList = patientRepository.findByNameContainingIgnoreCase(pName);
+//		List<PatientTo> patientToList = new ArrayList<PatientTo>();
+//		Optional.ofNullable(patientList).ifPresent(pL -> {
+//			pL.forEach(p -> {
+//				patientToList.add(new PatientTo(p.getName(), p.getAge(), p.getStatus(), null, null, null, null, null,
+//						null, null));
+//			});
+//		});
+//		return patientToList;
+//
+//	}
 
 }

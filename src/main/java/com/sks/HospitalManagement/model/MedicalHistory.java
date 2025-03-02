@@ -16,10 +16,10 @@ public class MedicalHistory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long mHid;
 
-//	@ManyToOne
-//	@JoinColumn(name = "patient_pId", nullable = false)
-//	@JsonBackReference
-//	private Patient patient;
+	@ManyToOne
+	@JoinColumn(name = "patient_pId", nullable = false)
+	@JsonBackReference
+	private Patient patient;
 	
 	@ManyToOne
 	@JoinColumn(name = "dId", nullable = false)
@@ -42,12 +42,12 @@ public class MedicalHistory {
 	public void setId(Long id) {
 		this.mHid = id;
 	}
-//	public Patient getPatient() {
-//		return patient;
-//	}
-//	public void setPatient(Patient patient) {
-//		this.patient = patient;
-//	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 //	public Doctor getDoctor() {
 //		return doctor;
 //	}

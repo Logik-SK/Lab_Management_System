@@ -2,13 +2,14 @@ package com.sks.HospitalManagement.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sks.HospitalManagement.dto.AppointmentTo;
+import com.sks.HospitalManagement.mapper.Mapper;
 import com.sks.HospitalManagement.model.Appointment;
-import com.sks.HospitalManagement.model.Doctor;
 import com.sks.HospitalManagement.model.Patient;
 import com.sks.HospitalManagement.repository.IAppointmentRepository;
 import com.sks.HospitalManagement.repository.IDoctorRepository;
@@ -23,26 +24,23 @@ public class AppointmentService {
 	@Autowired
 	IPatientRepository patientRepository;
 
-	public List<Appointment> getAllAppointments() {
-
-		return appointmentRepository.findAll();
+	public List<AppointmentTo> getAllAppointments() {
+		List<Appointment> appointmentList = appointmentRepository.findAll();
+		return appointmentList.stream().map(appointment -> Mapper.toDto(Optional.of(appointment)))
+				.collect(Collectors.toList());
 
 	}
 
-	public AppointmentTo addAppointment(AppointmentTo appointmentTo) {
-		Doctor doctor = doctorRepository.findById(appointmentTo.getDoctorId()).orElseThrow();
-		Patient patient = patientRepository.findById(appointmentTo.getPatientId()).orElseThrow();
+	public Appointment addAppointment(AppointmentTo appointmentTo) {
+		// Doctor doctor =
+		// doctorRepository.findById(appointmentTo.getDoctorId()).orElseThrow();
 
-		Appointment appointment = new Appointment();
-		//appointment.setDoctor(doctor);
-		//appointment.setPatient(patient);
-		//appointment.setAppointmentDate(appointmentTo.getAppointmentDate());
-		Optional<Appointment> addedOppointment = Optional.ofNullable(appointmentRepository.save(appointment));
-		AppointmentTo addedAppointmentTo = null;
-//		if (addedOppointment.isPresent()) {
-//			addedAppointmentTo = new AppointmentTo(addedOppointment.get().getAppointmentDate(), patient, doctor);
-//		}
-		return addedAppointmentTo;
+		// check patient present in db or not
+		Patient patient = patientRepository.findById(appointmentTo.getPatientId()).orElseThrow();
+		Appointment appointment = Mapper.toEntity(Optional.of(appointmentTo));
+		appointment.setPatient(patient);
+		// appointment.setDoctor(doctor);
+		return appointmentRepository.save(appointment);
 	}
 
 	public Optional<Appointment> findAppointmentById(Long aID) {

@@ -32,10 +32,10 @@ public class PatientController {
 	 * @return all patient list
 	 */
 	@GetMapping
-	public ResponseEntity<List<Patient>> getAllPatients() {
-		Optional<List<Patient>> patients = Optional.ofNullable(patientService.getAllPatients());
+	public ResponseEntity<List<PatientTo>> getAllPatients() {
+		Optional<List<PatientTo>> patientToList = Optional.ofNullable(patientService.getAllPatients());
 
-		return patients.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
+		return patientToList.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
 	}
 
@@ -45,8 +45,8 @@ public class PatientController {
 	 * @return added patient
 	 */
 	@PostMapping
-	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
-		Optional<Patient> addedPatient = Optional.ofNullable(patientService.addPatient(patient));
+	public ResponseEntity<Patient> addPatient(@RequestBody PatientTo patientTo) {
+		Optional<Patient> addedPatient = Optional.ofNullable(patientService.addPatient(patientTo));
 
 		if (addedPatient.isPresent()) {
 			return ResponseEntity.ok(addedPatient.get()); // Return the added patient
@@ -105,12 +105,12 @@ public class PatientController {
 	 * @param pName
 	 * @return
 	 */
-	@GetMapping("/search")
-	public ResponseEntity<List<PatientTo>> searchPatientByName(@RequestParam String pName) {
-		Optional<List<PatientTo>> patientlistOptional = Optional.ofNullable(patientService.searchPatientByName(pName));
-		return patientlistOptional.filter(pL -> !pL.isEmpty()).map(ResponseEntity::ok)
-				.orElse(ResponseEntity.noContent().build());
-	}
+//	@GetMapping("/search")
+//	public ResponseEntity<List<PatientTo>> searchPatientByName(@RequestParam String pName) {
+//		Optional<List<PatientTo>> patientlistOptional = Optional.ofNullable(patientService.searchPatientByName(pName));
+//		return patientlistOptional.filter(pL -> !pL.isEmpty()).map(ResponseEntity::ok)
+//				.orElse(ResponseEntity.noContent().build());
+//	}
 
 	/**
 	 * 

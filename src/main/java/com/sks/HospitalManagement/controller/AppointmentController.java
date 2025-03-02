@@ -32,8 +32,8 @@ public class AppointmentController {
 	 * @return
 	 */
 	@GetMapping
-	public ResponseEntity<List<Appointment>> getAllAppointments() {
-		Optional<List<Appointment>> appointment = Optional.ofNullable(appointmentService.getAllAppointments());
+	public ResponseEntity<List<AppointmentTo>> getAllAppointments() {
+		Optional<List<AppointmentTo>> appointment = Optional.ofNullable(appointmentService.getAllAppointments());
 
 		return appointment.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
@@ -45,12 +45,12 @@ public class AppointmentController {
 	 * @return
 	 */
 	@PostMapping
-	public ResponseEntity<AppointmentTo> addAppointment(@RequestBody AppointmentTo appointmentTo) {
-		Optional<AppointmentTo> addedappointmentTo = Optional
+	public ResponseEntity<Appointment> addAppointment(@RequestBody AppointmentTo appointmentTo) {
+		Optional<Appointment> addedappointment = Optional
 				.ofNullable(appointmentService.addAppointment(appointmentTo));
 
-		if (addedappointmentTo.isPresent()) {
-			return ResponseEntity.ok(addedappointmentTo.get()); // Return the added patient
+		if (addedappointment.isPresent()) {
+			return ResponseEntity.ok(addedappointment.get()); // Return the added patient
 		} else {
 			return ResponseEntity.badRequest().build(); // 400 Bad Request if adding fails
 		}

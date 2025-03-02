@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sks.HospitalManagement.dto.PatientTo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -38,13 +39,31 @@ public class Patient {
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 	private List<Appointment> appointments;
 
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-//	private List<MedicalHistory> medicalHistories;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	private List<MedicalHistory> medicalHistories;
 
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-//	private List<Report> reports;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	private List<Report> reports;
+
+	public Patient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Patient(PatientTo patientTo) {
+		this.pId = patientTo.getpId();
+		this.name = patientTo.getName();
+		this.age = patientTo.getAge();
+		this.status = patientTo.getStatus();
+		this.department = patientTo.getDepartment();
+		this.address = patientTo.getAddress();
+		this.gender = patientTo.getGender();
+		this.contact = patientTo.getContact();
+		this.admissionDate = patientTo.getAdmissionDate();
+		this.dischargeDate = patientTo.getDischargeDate();
+	}
 
 	public Long getpId() {
 		return pId;
@@ -134,20 +153,20 @@ public class Patient {
 		this.appointments = appointments;
 	}
 
-//	public List<MedicalHistory> getMedicalHistories() {
-//		return medicalHistories;
-//	}
-//
-//	public void setMedicalHistories(List<MedicalHistory> medicalHistories) {
-//		this.medicalHistories = medicalHistories;
-//	}
-//
-//	public List<Report> getReports() {
-//		return reports;
-//	}
-//
-//	public void setReports(List<Report> reports) {
-//		this.reports = reports;
-//	}
+	public List<MedicalHistory> getMedicalHistories() {
+		return medicalHistories;
+	}
+
+	public void setMedicalHistories(List<MedicalHistory> medicalHistories) {
+		this.medicalHistories = medicalHistories;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
 
 }
