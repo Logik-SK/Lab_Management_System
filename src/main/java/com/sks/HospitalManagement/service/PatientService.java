@@ -27,7 +27,7 @@ public class PatientService {
 
 	public Patient addPatient(PatientTo patientTo) {
 
-		return patientRepository.save(Mapper.toEntity(patientTo));
+		return patientRepository.save(Mapper.toEntity(patientTo));//add patient
 
 	}
 
