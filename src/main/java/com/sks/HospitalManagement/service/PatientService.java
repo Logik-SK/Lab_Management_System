@@ -21,7 +21,7 @@ public class PatientService {
 
 	public List<PatientTo> getAllPatients() {
 
-		List<Patient> patientlList = patientRepository.findAll();
+		List<Patient> patientlList = patientRepository.findAll();//get all patients
 		return patientlList.stream().map(patient -> Mapper.toDto(patient)).collect(Collectors.toList());
 	}
 
