@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sks.HospitalManagement.model.Appointment;
+import com.sks.HospitalManagement.model.MedicalHistory;
 
 public class AppointmentTo {
 
@@ -42,6 +43,9 @@ public class AppointmentTo {
 		this.time = appointment.getTime();
 		this.createdAt = appointment.getCreatedAt();
 		this.updatedAt = appointment.getUpdatedAt();
+	}
+
+	public AppointmentTo(MedicalHistory medicalHistory) {
 	}
 
 	public Long getaId() {
