@@ -1,8 +1,7 @@
-package com.sks.HospitalManagement.service;
+package com.sks.MediLabPro.service;
 
-import com.sks.HospitalManagement.dto.MedicalHistoryTo;
-import com.sks.HospitalManagement.model.MedicalHistory;
-import com.sks.HospitalManagement.repository.IMedicalHistoryRepository;
+import com.sks.MediLabPro.model.MedicalHistory;
+import com.sks.MediLabPro.repository.IMedicalHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

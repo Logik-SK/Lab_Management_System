@@ -1,10 +1,10 @@
-package com.sks.HospitalManagement;
+package com.sks.MediLabPro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HospitalManagementApplicationTests {
+class MediLabPro {
 
 	@Test
 	void contextLoads() {

@@ -1,8 +1,8 @@
-package com.sks.HospitalManagement.controller;
+package com.sks.MediLabPro.controller;
 
-import com.sks.HospitalManagement.dto.MedicalHistoryTo;
-import com.sks.HospitalManagement.model.MedicalHistory;
-import com.sks.HospitalManagement.service.MedicalHistoryService;
+import com.sks.MediLabPro.dto.MedicalHistoryTo;
+import com.sks.MediLabPro.model.MedicalHistory;
+import com.sks.MediLabPro.service.MedicalHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

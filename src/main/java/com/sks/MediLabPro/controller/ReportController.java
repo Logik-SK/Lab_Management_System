@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.controller;
+package com.sks.MediLabPro.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sks.HospitalManagement.model.Report;
+import com.sks.MediLabPro.model.Report;
 
 @RestController
 @RequestMapping("/report")

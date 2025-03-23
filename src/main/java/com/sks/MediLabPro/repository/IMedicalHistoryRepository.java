@@ -1,6 +1,6 @@
-package com.sks.HospitalManagement.repository;
+package com.sks.MediLabPro.repository;
 
-import com.sks.HospitalManagement.model.MedicalHistory;
+import com.sks.MediLabPro.model.MedicalHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IMedicalHistoryRepository extends JpaRepository<MedicalHistory, Long> {

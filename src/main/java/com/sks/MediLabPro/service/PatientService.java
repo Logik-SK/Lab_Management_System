@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.service;
+package com.sks.MediLabPro.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.sks.HospitalManagement.dto.PatientTo;
-import com.sks.HospitalManagement.mapper.Mapper;
-import com.sks.HospitalManagement.model.Patient;
-import com.sks.HospitalManagement.repository.IPatientRepository;
+import com.sks.MediLabPro.dto.PatientTo;
+import com.sks.MediLabPro.mapper.Mapper;
+import com.sks.MediLabPro.model.Patient;
+import com.sks.MediLabPro.repository.IPatientRepository;
 
 @Service
 public class PatientService {

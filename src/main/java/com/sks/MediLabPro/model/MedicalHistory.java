@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.model;
+package com.sks.MediLabPro.model;
 
 import java.time.LocalDate;
 

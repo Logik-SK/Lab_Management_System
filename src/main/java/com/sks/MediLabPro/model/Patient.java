@@ -1,11 +1,11 @@
-package com.sks.HospitalManagement.model;
+package com.sks.MediLabPro.model;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sks.HospitalManagement.dto.PatientTo;
+import com.sks.MediLabPro.dto.PatientTo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

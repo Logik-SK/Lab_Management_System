@@ -1,8 +1,8 @@
-package com.sks.HospitalManagement.repository;
+package com.sks.MediLabPro.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sks.HospitalManagement.model.Doctor;
+import com.sks.MediLabPro.model.Doctor;
 
 public interface IDoctorRepository extends JpaRepository<Doctor, Long> {
 

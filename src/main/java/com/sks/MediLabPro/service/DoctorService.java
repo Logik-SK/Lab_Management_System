@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.service;
+package com.sks.MediLabPro.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.sks.HospitalManagement.model.Doctor;
-import com.sks.HospitalManagement.repository.IDoctorRepository;
+import com.sks.MediLabPro.model.Doctor;
+import com.sks.MediLabPro.repository.IDoctorRepository;
 
 @Service
 public class DoctorService {

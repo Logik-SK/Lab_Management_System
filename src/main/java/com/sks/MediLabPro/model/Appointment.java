@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.model;
+package com.sks.MediLabPro.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sks.HospitalManagement.dto.AppointmentTo;
+import com.sks.MediLabPro.dto.AppointmentTo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

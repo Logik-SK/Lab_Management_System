@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.dto;
+package com.sks.MediLabPro.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sks.HospitalManagement.model.Patient;
+import com.sks.MediLabPro.model.Patient;
 
 public class PatientTo {
 

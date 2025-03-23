@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.service;
+package com.sks.MediLabPro.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sks.HospitalManagement.dto.AppointmentTo;
-import com.sks.HospitalManagement.mapper.Mapper;
-import com.sks.HospitalManagement.model.Appointment;
-import com.sks.HospitalManagement.model.Patient;
-import com.sks.HospitalManagement.repository.IAppointmentRepository;
-import com.sks.HospitalManagement.repository.IDoctorRepository;
-import com.sks.HospitalManagement.repository.IPatientRepository;
+import com.sks.MediLabPro.dto.AppointmentTo;
+import com.sks.MediLabPro.mapper.Mapper;
+import com.sks.MediLabPro.model.Appointment;
+import com.sks.MediLabPro.model.Patient;
+import com.sks.MediLabPro.repository.IAppointmentRepository;
+import com.sks.MediLabPro.repository.IDoctorRepository;
+import com.sks.MediLabPro.repository.IPatientRepository;
 
 @Service
 public class AppointmentService {

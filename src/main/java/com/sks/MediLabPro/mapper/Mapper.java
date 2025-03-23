@@ -1,11 +1,11 @@
-package com.sks.HospitalManagement.mapper;
+package com.sks.MediLabPro.mapper;
 
-import com.sks.HospitalManagement.dto.AppointmentTo;
-import com.sks.HospitalManagement.dto.MedicalHistoryTo;
-import com.sks.HospitalManagement.dto.PatientTo;
-import com.sks.HospitalManagement.model.Appointment;
-import com.sks.HospitalManagement.model.MedicalHistory;
-import com.sks.HospitalManagement.model.Patient;
+import com.sks.MediLabPro.dto.AppointmentTo;
+import com.sks.MediLabPro.dto.MedicalHistoryTo;
+import com.sks.MediLabPro.dto.PatientTo;
+import com.sks.MediLabPro.model.Appointment;
+import com.sks.MediLabPro.model.MedicalHistory;
+import com.sks.MediLabPro.model.Patient;
 
 import java.util.Collections;
 import java.util.List;

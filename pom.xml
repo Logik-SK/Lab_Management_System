@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sks</groupId>
-	<artifactId>HospitalManagement</artifactId>
+	<artifactId>MediLabPro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HospitalManagement</name>
 	<description>This hospital management system optimizes administrative

@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.controller;
+package com.sks.MediLabPro.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sks.HospitalManagement.dto.AppointmentTo;
-import com.sks.HospitalManagement.model.Appointment;
-import com.sks.HospitalManagement.service.AppointmentService;
+import com.sks.MediLabPro.dto.AppointmentTo;
+import com.sks.MediLabPro.model.Appointment;
+import com.sks.MediLabPro.service.AppointmentService;
 
 @RestController
 @RequestMapping("api/appointments")

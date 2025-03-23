@@ -1,4 +1,4 @@
-package com.sks.HospitalManagement.controller;
+package com.sks.MediLabPro.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sks.HospitalManagement.dto.PatientTo;
-import com.sks.HospitalManagement.model.Billing;
-import com.sks.HospitalManagement.model.MedicalHistory;
-import com.sks.HospitalManagement.model.Patient;
-import com.sks.HospitalManagement.service.PatientService;
+import com.sks.MediLabPro.dto.PatientTo;
+import com.sks.MediLabPro.model.Billing;
+import com.sks.MediLabPro.model.MedicalHistory;
+import com.sks.MediLabPro.model.Patient;
+import com.sks.MediLabPro.service.PatientService;
 
 @RestController
 @RequestMapping("api/patients")

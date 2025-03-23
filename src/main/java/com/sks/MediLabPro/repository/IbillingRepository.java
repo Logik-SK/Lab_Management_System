@@ -1,8 +1,8 @@
-package com.sks.HospitalManagement.repository;
+package com.sks.MediLabPro.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sks.HospitalManagement.model.Billing;
+import com.sks.MediLabPro.model.Billing;
 
 public interface IbillingRepository extends JpaRepository<Billing, Long>  {
 
