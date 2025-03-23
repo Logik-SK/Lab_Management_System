@@ -33,6 +33,7 @@ public class AppointmentController {
 	 */
 	@GetMapping
 	public ResponseEntity<List<AppointmentTo>> getAllAppointments() {
+		//fetch from database
 		Optional<List<AppointmentTo>> appointment = Optional.ofNullable(appointmentService.getAllAppointments());
 
 		return appointment.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
@@ -58,7 +59,7 @@ public class AppointmentController {
 
 	/**
 	 * 
-	 * @param appointmentId
+	 * @param aID
 	 * @return
 	 */
 	@GetMapping("/aID")
@@ -70,7 +71,7 @@ public class AppointmentController {
 
 	/**
 	 * 
-	 * @param id
+	 * @param aId
 	 * @param appointment
 	 * @return
 	 */
