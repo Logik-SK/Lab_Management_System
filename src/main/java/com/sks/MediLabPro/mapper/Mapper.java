@@ -1,9 +1,11 @@
 package com.sks.MediLabPro.mapper;
 
 import com.sks.MediLabPro.dto.AppointmentTo;
+import com.sks.MediLabPro.dto.BillingTo;
 import com.sks.MediLabPro.dto.MedicalHistoryTo;
 import com.sks.MediLabPro.dto.PatientTo;
 import com.sks.MediLabPro.model.Appointment;
+import com.sks.MediLabPro.model.Billing;
 import com.sks.MediLabPro.model.MedicalHistory;
 import com.sks.MediLabPro.model.Patient;
 
@@ -56,6 +58,16 @@ public class Mapper {
     }
 
     /**
+     *
+     * @param billingTo
+     * @return
+     */
+    public static Billing toEntity(BillingTo billingTo) {
+        if (billingTo == null) return new Billing();
+        return new Billing(billingTo);
+    }
+
+    /**
      * Convert Patient to PatientTo
      *
      * @param patient
@@ -63,8 +75,7 @@ public class Mapper {
      */
     public static PatientTo toDto(Patient patient) {
         PatientTo patientTo = null;
-        if (patient == null)
-            return new PatientTo();
+        if (patient == null) return new PatientTo();
 
         if (patient != null) {
             patientTo = new PatientTo(patient);
@@ -87,8 +98,7 @@ public class Mapper {
     public static AppointmentTo toDto(Optional<Appointment> appointment) {
         AppointmentTo appointmentTo = null;
 
-        if (appointment.isEmpty())
-            return new AppointmentTo();
+        if (appointment.isEmpty()) return new AppointmentTo();
 
         appointmentTo = new AppointmentTo(appointment.get());
         if (appointment.get().getPatient() != null)
@@ -97,16 +107,27 @@ public class Mapper {
         return appointmentTo;
     }
 
+    /**
+     * @param medicalHistory
+     * @return
+     */
     public static MedicalHistoryTo toDto(MedicalHistory medicalHistory) {
         MedicalHistoryTo medicalHistoryTo = null;
 
-        if (medicalHistory!=null)
-            return new MedicalHistoryTo();
+        if (medicalHistory != null) return new MedicalHistoryTo();
 
-       // medicalHistoryTo = new MedicalHistoryTo(medicalHistory);
+        // medicalHistoryTo = new MedicalHistoryTo(medicalHistory);
 
 
         return medicalHistoryTo;
     }
+
+    public static BillingTo toDto(Billing billing) {
+        if (billing == null) return new BillingTo();
+        BillingTo billingTo = new BillingTo(billing);
+        billingTo.addEntities("appointment", billing.getAppointment());
+        return billingTo;
+    }
+
 
 }

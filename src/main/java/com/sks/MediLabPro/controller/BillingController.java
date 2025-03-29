@@ -1,89 +1,85 @@
 package com.sks.MediLabPro.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.sks.MediLabPro.dto.BillingTo;
 import com.sks.MediLabPro.model.Billing;
+import com.sks.MediLabPro.service.BillingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/billing")
+@RequestMapping("api/billing")
 public class BillingController {
-	/**
-	 * 
-	 * @return
-	 */
-	@GetMapping
-	public ResponseEntity<Billing> getAllBilling() {
-		return null;
-	}
+    @Autowired
+    BillingService billingService;
 
-	/**
-	 * 
-	 * @param billing
-	 * @return
-	 */
-	@PostMapping
-	public ResponseEntity<Billing> addBilling(@RequestBody Billing billing) {
+    /**
+     * @return
+     */
+    @GetMapping
+    public ResponseEntity<List<BillingTo>> getAllBilling() {
+        Optional<List<BillingTo>> allBilling = Optional.ofNullable(billingService.getAllBilling());
+        return allBilling.filter(billing -> !billing.isEmpty()).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
 
-		return null;
-	}
+    }
 
-	/**
-	 * 
-	 * @param bID
-	 * @return
-	 */
-	@GetMapping("/bId")
-	public ResponseEntity<Billing> getBillingById(@PathVariable Long bID) {
-		return null;
-	}
+    /**
+     * @param billingTo
+     * @return
+     */
+    @PostMapping
+    public ResponseEntity<Billing> addBilling(@RequestBody BillingTo billingTo) {
 
-	/**
-	 * 
-	 * @return
-	 */
-	@GetMapping("/pending")
-	public ResponseEntity<Billing> getAllPendingBilling() {
-		return null;
-	}
+        Optional<Billing> addBilling = Optional.ofNullable(billingService.addBilling(billingTo));
+        return addBilling.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.noContent().build());
+    }
 
-	/**
-	 * 
-	 * @param bId
-	 * @param billing
-	 * @return
-	 */
-	@PutMapping("/{bId}")
-	public ResponseEntity<Billing> putMethodName(@PathVariable Long bId, @RequestBody Billing billing) {
+    /**
+     * @param bID
+     * @return
+     */
+    @GetMapping("/bId")
+    public ResponseEntity<Billing> getBillingById(@PathVariable Long bID) {
+        return null;
+    }
 
-		return null;
-	}
+    /**
+     * @return
+     */
+    @GetMapping("/pending")
+    public ResponseEntity<Billing> getAllPendingBilling() {
+        return null;
+    }
 
-	/**
-	 * 
-	 * @param Id
-	 * @return
-	 */
-	@DeleteMapping("/bID")
-	public ResponseEntity<Void> deleteBillingById(@PathVariable Long Id) {
-		return null;
-	}
+    /**
+     * @param bId
+     * @param billing
+     * @return
+     */
+    @PutMapping("/{bId}")
+    public ResponseEntity<Billing> putMethodName(@PathVariable Long bId, @RequestBody Billing billing) {
 
-	/**
-	 * 
-	 * @param bId
-	 * @return
-	 */
-	@PatchMapping("{bId}/pay")
-	public ResponseEntity<String> markBillingAsPaid(@PathVariable Long bId) {
+        return null;
+    }
+
+    /**
+     * @param Id
+     * @return
+     */
+    @DeleteMapping("/bID")
+    public ResponseEntity<Void> deleteBillingById(@PathVariable Long Id) {
+        return null;
+    }
+
+    /**
+     * @param bId
+     * @return
+     */
+    @PatchMapping("{bId}/pay")
+    public ResponseEntity<String> markBillingAsPaid(@PathVariable Long bId) {
 //		return billingRepository.findById(bId).map(billing -> {
 //			if (billing.isPaid()) {
 //				return ResponseEntity.badRequest().body("Billing record is already paid.");
@@ -94,7 +90,7 @@ public class BillingController {
 //			return ResponseEntity.ok("Billing record marked as paid.");
 //		}).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Billing record not found."));
 
-		return null;
-	}
+        return null;
+    }
 
 }

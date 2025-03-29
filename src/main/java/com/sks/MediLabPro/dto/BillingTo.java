@@ -1,97 +1,63 @@
-package com.sks.MediLabPro.model;
+package com.sks.MediLabPro.dto;
 
-import com.sks.MediLabPro.dto.BillingTo;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sks.MediLabPro.model.Appointment;
+import com.sks.MediLabPro.model.Billing;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
-@Entity
-@Table(name = "billing")
-public class Billing {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BillingTo {
+
     private Long bId;
-
-//	@ManyToOne
-//	@JoinColumn(name = "pId", nullable = false)
-//	private Patient patient;
-
-    @OneToOne
-    @JoinColumn(name = "aId", nullable = true)
     private Appointment appointment;
-
-    @Column(nullable = false)
     private BigDecimal totalAmount;
-
     private BigDecimal discount;
     private BigDecimal tax;
-
-    @Column(nullable = false)
     private BigDecimal finalAmount;
-
-    @Column(nullable = false)
-    private String paymentStatus; // Pending, Paid, Failed
-
-    private String paymentMethod; // Cash, Credit Card, Insurance
-
-   // @Column(nullable = false)
+    private String paymentStatus;
+    private String paymentMethod;
     private LocalDateTime billingDate;
-
     private LocalDateTime dueDate;
-
-    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
+    private Map<String, Object> entities;
 
-    public Billing() {
+    public BillingTo(Billing billing) {
+        this.bId = billing.getBid();
+        this.totalAmount = billing.getTotalAmount();
+        this.discount = billing.getDiscount();
+        this.tax = billing.getTax();
+        this.finalAmount = billing.getFinalAmount();
+        this.paymentStatus = billing.getPaymentStatus();
+        this.paymentMethod = billing.getPaymentMethod();
+        this.dueDate = billing.getDueDate();
+        this.createdAt=billing.getCreatedAt();
+        this.updatedAt=billing.getUpdatedAt();
 
     }
 
-    public Billing(BillingTo billingTo) {
-
-        this.totalAmount = billingTo.getTotalAmount();
-        this.discount = billingTo.getDiscount();
-        this.tax = billingTo.getTax();
-        this.finalAmount = billingTo.getFinalAmount();
-        this.paymentStatus = billingTo.getPaymentStatus();
-        this.paymentMethod = billingTo.getPaymentMethod();
-       this.dueDate = billingTo.getDueDate();
+    public BillingTo() {
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.billingDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    // Getters and Setters
-    public Long getBid() {
+    public Long getbId() {
         return bId;
     }
 
-//	public Patient getPatient() {
-//		return patient;
-//	}
-//
-//	public void setPatient(Patient patient) {
-//		this.patient = patient;
-//	}
-
-    public void setBid(Long bId) {
+    public void setbId(Long bId) {
         this.bId = bId;
     }
 
+    @JsonIgnore
     public Appointment getAppointment() {
         return appointment;
     }
+
 
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
@@ -165,7 +131,33 @@ public class Billing {
         return createdAt;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Map<String, Object> getEntities() {
+        return entities;
+    }
+
+    public void setEntities(Map<String, Object> entities) {
+        this.entities = entities;
+    }
+
+    public void addEntities(String key, Object value) {
+        if (this.entities == null) {
+            this.entities = new HashMap<>();
+        }
+        entities.put(key, value);
+    }
+//    public Object getRelations(){
+//        return this.entities.values();
+//    }
 }

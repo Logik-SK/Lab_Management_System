@@ -1,28 +1,36 @@
-// Function to load the content of basic.html
-async function loadBasicTemplate() {
-	const response = await fetch('/sidebar');
-	const text = await response.text();
-	document.getElementById('sidebar-container').innerHTML = text;
+// Function to load HTML components dynamically
+function loadComponent(selector, file, callback) {
+    fetch(file)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load ${file}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.querySelector(selector).innerHTML = data;
+            if (callback) callback(); // Call the callback after loading
+        })
+        .catch(error => console.error(error));
 }
 
-// Load the template when the page loads
-window.onload = loadBasicTemplate;
+// Load navbar and sidebar
+document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('.navbar', 'html/navbar.html');
+    loadComponent('.sidebar', 'html/sidebar.html', toggleSidebar); // Call toggleSidebar after sidebar loads
+});
 
+// Sidebar toggle functionality
+function toggleSidebar() {
+    console.log("Toggle Sidebar Function Called"); // Log to check if the function is called
+    const sidebar = document.querySelector('.sidebar'); // Select the sidebar
+    const toggleButton = document.querySelector('.btn-toggle-sidebar'); // Select the toggle button
 
-document.addEventListener("DOMContentLoaded", showSidebar);
-function showSidebar() {
-	const sidebar = document.getElementById("sidebar");
-	const sidebarToggle = document.getElementById("sidebarToggle");
-
-	// Check if both elements exist
-	if (sidebar && sidebarToggle) {
-		sidebarToggle.addEventListener('click', () => {
-			console.log("Sidebar selected");
-			sidebar.classList.toggle("active"); // Toggle the sidebar
-		});
-	} else {
-		console.error("Sidebar or Sidebar Toggle button not found.");
-	}
+    if (sidebar && toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded'); // Toggle the 'expanded' class
+        });
+    } else {
+        console.error('Sidebar or toggle button not found!');
+    }
 }
-
-

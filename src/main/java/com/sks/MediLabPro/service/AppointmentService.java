@@ -17,35 +17,35 @@ import com.sks.MediLabPro.repository.IPatientRepository;
 
 @Service
 public class AppointmentService {
-	@Autowired
-	IAppointmentRepository appointmentRepository;
-	@Autowired
-	IDoctorRepository doctorRepository;
-	@Autowired
-	IPatientRepository patientRepository;
+    @Autowired
+    IAppointmentRepository appointmentRepository;
+    @Autowired
+    IDoctorRepository doctorRepository;
+    @Autowired
+    IPatientRepository patientRepository;
 
-	public List<AppointmentTo> getAllAppointments() {
-		List<Appointment> appointmentList = appointmentRepository.findAll();
-		return appointmentList.stream().map(appointment -> Mapper.toDto(Optional.of(appointment)))
-				.collect(Collectors.toList());
+    public List<AppointmentTo> getAllAppointments() {
+        List<Appointment> appointmentList = appointmentRepository.findAll();
+        return appointmentList.stream().map(appointment -> Mapper.toDto(Optional.of(appointment))).collect(Collectors.toList());
 
-	}
+    }
 
-	public Appointment addAppointment(AppointmentTo appointmentTo) {
-		// Doctor doctor =
-		// doctorRepository.findById(appointmentTo.getDoctorId()).orElseThrow();
 
-		// check patient present in db or not
-		Patient patient = patientRepository.findById(appointmentTo.getPatientId()).orElseThrow();
-		Appointment appointment = Mapper.toEntity(Optional.of(appointmentTo));
-		appointment.setPatient(patient);
-		// appointment.setDoctor(doctor);
-		return appointmentRepository.save(appointment);
-	}
+    public Appointment addAppointment(AppointmentTo appointmentTo) {
+        // Doctor doctor =
+        // doctorRepository.findById(appointmentTo.getDoctorId()).orElseThrow();
 
-	public Optional<Appointment> findAppointmentById(Long aID) {
-		return appointmentRepository.findById(aID);
+        // check patient present in db or not
+        Patient patient = patientRepository.findById(appointmentTo.getPatientId()).orElseThrow();
+        Appointment appointment = Mapper.toEntity(Optional.of(appointmentTo));
+        appointment.setPatient(patient);
+        // appointment.setDoctor(doctor);
+        return appointmentRepository.save(appointment);
+    }
 
-	}
+    public Optional<Appointment> findAppointmentById(Long aID) {
+        return appointmentRepository.findById(aID);
+
+    }
 
 }

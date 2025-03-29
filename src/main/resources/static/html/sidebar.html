@@ -1,44 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<ul class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link" href="/dashboard">
+			<i class="fas fa-home"></i>
+			<span class="menu-text">Dashboard</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/patients">
+			<i class="fas fa-user-injured"></i>
+			<span class="menu-text">Patients</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/doctors">
+			<i class="fas fa-user-md"></i>
+			<span class="menu-text">Doctors</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/departments">
+			<i class="fas fa-clinic-medical"></i>
+			<span class="menu-text">Departments</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/appointments">
+			<i class="fas fa-calendar-check"></i>
+			<span class="menu-text">Appointments</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/tests">
+			<i class="fas fa-vials"></i>
+			<span class="menu-text">Tests</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/reports">
+			<i class="fas fa-file-medical-alt"></i>
+			<span class="menu-text">Reports</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/billing-payments">
+			<i class="fas fa-wallet"></i>
+			<span class="menu-text">Billing & Payments</span>
+		</a>
+	</li>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Dashboard | HMS</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/dashboard.css">
-	<link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
-	<div class="wrapper">
-		<!-- Sidebar -->
-		<!-- Sidebar -->
-		<nav class="sidebar" id="sidebar">
-			<div class="sidebar-header">
-				<h3>HMS Dashboard</h3>
-				<button class="toggle-btn" onclick="showSidebar()" id="sidebarToggle">
-					☰
-				</button>
-			</div>
-			<ul class="list-unstyled components">
-				<li class="active"><a href="#">Dashboard</a></li>
-				<li><a href="#">Patients</a></li>
-				<li><a href="#">Doctors</a></li>
-				<li><a href="#">Appointments</a></li>
-				<li><a href="#">Billing</a></li>
-				<li><a href="#">Settings</a></li>
-			</ul>
-			<button class="logout-btn">
-				<i class="fas fa-sign-out-alt"></i> Log Out
-			</button>
-		</nav>
-	</div>
-
-
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-	<script src="js/dashboard.js"></script>
-</body>
-
-</html>
+</ul>
