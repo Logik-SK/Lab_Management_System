@@ -16,8 +16,8 @@ function loadComponent(selector, file, callback) {
 
 // Load navbar and sidebar
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponent('.navbar', 'html/navbar.html');
-    loadComponent('.sidebar', 'html/sidebar.html', toggleSidebar); // Call toggleSidebar after sidebar loads
+    loadComponent('.navbar', 'html/navbar.html', toggleSidebar);
+    loadComponent('.sidebar', 'html/sidebar.html'); 
 });
 
 // Sidebar toggle functionality
@@ -34,3 +34,22 @@ function toggleSidebar() {
         console.error('Sidebar or toggle button not found!');
     }
 }
+
+function toggleSidebarOnHover() {
+    const sidebar = document.querySelector('.sidebar');
+
+    if (sidebar) {
+        sidebar.addEventListener('mouseenter', () => {
+            sidebar.classList.add('expanded');
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+            sidebar.classList.remove('expanded');
+        });
+    } else {
+        console.error('Sidebar not found!');
+    }
+}
+
+// Call the function after the DOM loads
+document.addEventListener('DOMContentLoaded', toggleSidebarOnHover);

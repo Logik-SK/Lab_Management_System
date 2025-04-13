@@ -21,7 +21,7 @@ public class PatientService {
 
 	public List<PatientTo> getAllPatients() {
 
-		List<Patient> patientlList = patientRepository.findAll();//get all patients
+		List<Patient> patientlList = patientRepository.findAll();// get all patients
 		return patientlList.stream().map(patient -> Mapper.toDto(patient)).collect(Collectors.toList());
 	}
 
@@ -40,27 +40,33 @@ public class PatientService {
 
 	}
 
-	public Patient updatePatient(Long id, Patient UpdatedPatient) {
+	public Patient updatePatient(Long id, PatientTo updatedPatientTo) {
 		// Fetch the existing patient
-
+		Patient updatedPatient = Mapper.toEntity(updatedPatientTo);
 		Patient existingPatient = patientRepository.findById(id)
 				.orElseThrow(() -> new NoSuchElementException("Patient not found with ID: " + id));
 
-		if (StringUtils.hasText(UpdatedPatient.getName())) {
-			existingPatient.setName(UpdatedPatient.getName());
+		if (StringUtils.hasText(updatedPatient.getName())) {
+			existingPatient.setName(updatedPatient.getName());
 		}
-		if (StringUtils.hasText(UpdatedPatient.getDepartment())) {
-			existingPatient.setDepartment(UpdatedPatient.getDepartment());
+		if (StringUtils.hasText(updatedPatient.getDepartment())) {
+			existingPatient.setDepartment(updatedPatient.getDepartment());
 		}
-		if (StringUtils.hasText(UpdatedPatient.getStatus())) {
-			existingPatient.setStatus(UpdatedPatient.getStatus());
+		if (StringUtils.hasText(updatedPatient.getStatus())) {
+			existingPatient.setStatus(updatedPatient.getStatus());
 		}
-		if (UpdatedPatient.getAge() != 0) {
-			existingPatient.setAge(UpdatedPatient.getAge());
+		if (updatedPatient.getAge() != 0) {
+			existingPatient.setAge(updatedPatient.getAge());
 		}
-		if (UpdatedPatient.getDischargeDate() != null) {
-			existingPatient.setDischargeDate(UpdatedPatient.getDischargeDate());
+		if (updatedPatient.getDischargeDate() != null) {
+			existingPatient.setDischargeDate(updatedPatient.getDischargeDate());
 		}
+		if(updatedPatient.getAdmissionDate() != null) {
+			existingPatient.setAdmissionDate(updatedPatient.getAdmissionDate());
+		}
+		if (StringUtils.hasText(updatedPatient.getAddress())) {
+			existingPatient.setAddress(updatedPatient.getAddress());
+		}	
 		return patientRepository.save(existingPatient);
 
 	}
@@ -70,20 +76,22 @@ public class PatientService {
 
 	}
 
-//	public List<PatientTo> searchPatientByName(String pName) {
-//		if (!StringUtils.hasText(pName)) {
-//			return new ArrayList<PatientTo>();
-//		}
-//		List<Patient> patientList = patientRepository.findByNameContainingIgnoreCase(pName);
-//		List<PatientTo> patientToList = new ArrayList<PatientTo>();
-//		Optional.ofNullable(patientList).ifPresent(pL -> {
-//			pL.forEach(p -> {
-//				patientToList.add(new PatientTo(p.getName(), p.getAge(), p.getStatus(), null, null, null, null, null,
-//						null, null));
-//			});
-//		});
-//		return patientToList;
-//
-//	}
+	// public List<PatientTo> searchPatientByName(String pName) {
+	// if (!StringUtils.hasText(pName)) {
+	// return new ArrayList<PatientTo>();
+	// }
+	// List<Patient> patientList =
+	// patientRepository.findByNameContainingIgnoreCase(pName);
+	// List<PatientTo> patientToList = new ArrayList<PatientTo>();
+	// Optional.ofNullable(patientList).ifPresent(pL -> {
+	// pL.forEach(p -> {
+	// patientToList.add(new PatientTo(p.getName(), p.getAge(), p.getStatus(), null,
+	// null, null, null, null,
+	// null, null));
+	// });
+	// });
+	// return patientToList;
+	//
+	// }
 
 }

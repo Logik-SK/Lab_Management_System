@@ -21,6 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	document.getElementById('total-patient-count').textContent = ` ${totalPatientCount}`;
 	document.getElementById('total-doctor-count').textContent = ` ${totalDoctorCount}`;
 	document.getElementById('total-Appointment-count').textContent = ` ${totalAppointmentCount}`;
-	document.getElementById('total-billing-count').textContent = ` ${totalBillingCount}`;
+	// document.getElementById('total-billing-count').textContent = ` ${totalBillingCount}`;
 
 });

@@ -22,21 +22,17 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
 					<thead class="table-dark">
-						<tr>
-							<th>#</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Contact</th>
-							<th>Actions</th>
+						<tr id="patient-table-header">
+
 						</tr>
 					</thead>
 					<tbody id="patient-table">
 						<!-- Dynamic rows will be inserted here -->
 					</tbody>
 				</table>
+
 				<div class="text-end">
-					<button class="btn btn-primary" id="add-patient-btn" onclick="addPatient()">
+					<button class="btn btn-primary" id="add-patient-btn">
 						<i class="fas fa-user-plus"></i> Add Patient
 					</button>
 				</div>
@@ -46,8 +42,11 @@
 						<i class="fas fa-arrow-left"></i> Back to Dashboard
 					</a>
 				</div>
+				
 			</div>
+
 		</div>
+
 	</div>
 
 	<footer class="text-center mt-5 py-3">
@@ -55,8 +54,8 @@
 	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<script src="js/patient.js"></script>
+
+	<script type="module" src="js/patient.js"></script>
 </body>
 
 </html>

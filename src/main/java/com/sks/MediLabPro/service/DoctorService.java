@@ -1,13 +1,17 @@
 package com.sks.MediLabPro.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.sks.MediLabPro.dto.DoctorTo;
+import com.sks.MediLabPro.mapper.Mapper;
 import com.sks.MediLabPro.model.Doctor;
 import com.sks.MediLabPro.repository.IDoctorRepository;
 
@@ -16,14 +20,14 @@ public class DoctorService {
 	@Autowired
 	IDoctorRepository doctorRepository;
 
-	public List<Doctor> getAllDoctors() {
-		// TODO Auto-generated method stub
-		return doctorRepository.findAll();
+	public List<DoctorTo> getAllDoctors() {
+		
+		return doctorRepository.findAll().stream().map(doctor->Mapper.toDto(doctor)).collect(Collectors.toList());
 	}
 
-	public Doctor addDoctor(Doctor doctor) {
-		// TODO Auto-generated method stub
-		return doctorRepository.save(doctor);
+	public Doctor addDoctor(DoctorTo doctorTo) {
+
+		return doctorRepository.save(Mapper.toEntity(doctorTo));
 	}
 
 	public Optional<Doctor> findDoctorById(long doctorId) {

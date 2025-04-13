@@ -19,6 +19,7 @@ import com.sks.MediLabPro.model.Billing;
 import com.sks.MediLabPro.model.MedicalHistory;
 import com.sks.MediLabPro.model.Patient;
 import com.sks.MediLabPro.service.PatientService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/patients")
@@ -44,7 +45,7 @@ public class PatientController {
 	 * @return added patient
 	 */
 	@PostMapping
-	public ResponseEntity<Patient> addPatient(@RequestBody PatientTo patientTo) {
+	public ResponseEntity<Patient> addPatient(@Valid @RequestBody PatientTo patientTo) {
 		Optional<Patient> addedPatient = Optional.ofNullable(patientService.addPatient(patientTo));
 
 		if (addedPatient.isPresent()) {
@@ -61,15 +62,17 @@ public class PatientController {
 	 * @return updated Patient
 	 */
 	@PutMapping("/{pId}")
-	public ResponseEntity<Patient> updatePatient(@PathVariable Long pId, @RequestBody Patient patient) {
-		// Attempt to update the patient using the service
-		Optional<Patient> updatedPatient = Optional.ofNullable(patientService.updatePatient(pId, patient));
+	public ResponseEntity<Patient> updatePatient(@PathVariable Long pId, @RequestBody PatientTo patientTo) {
+		//Attempt to update the patient using the service
+		Optional<Patient> updatedPatient = Optional.ofNullable(patientService.updatePatient(pId, patientTo));
 
 		if (updatedPatient.isPresent()) {
 			return ResponseEntity.ok(updatedPatient.get()); // Return the updated patient
 		} else {
 			return ResponseEntity.notFound().build(); // 404 Not Found if the patient doesn't exist
 		}
+		
+		//return null;
 	}
 
 	/**

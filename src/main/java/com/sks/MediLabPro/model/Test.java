@@ -1,6 +1,10 @@
+package com.sks.MediLabPro.model;
+
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.sks.MediLabPro.dto.TestTo;
 
 @Entity
 @Table(name = "tests")
@@ -52,20 +56,22 @@ public class Test {
     // Constructors
     public Test() {}
 
-    public Test(String testName, String description, String category, BigDecimal cost,
-                String sampleRequired, String normalRange, String unit, String method,
-                String status, Integer durationInMinutes, Boolean isHomeCollectionAvailable) {
-        this.testName = testName;
-        this.description = description;
-        this.category = category;
-        this.cost = cost;
-        this.sampleRequired = sampleRequired;
-        this.normalRange = normalRange;
-        this.unit = unit;
-        this.method = method;
-        this.status = status;
-        this.durationInMinutes = durationInMinutes;
-        this.isHomeCollectionAvailable = isHomeCollectionAvailable;
+    public Test( TestTo testTo ) {
+        this.testName = testTo.getTestName();
+        this.description = testTo.getDescription();
+        this.category = testTo.getCategory();
+        this.cost = testTo.getCost();
+        this.sampleRequired = testTo.getSampleRequired();
+        this.normalRange = testTo.getNormalRange();
+        this.unit = testTo.getUnit();
+        this.method = testTo.getMethod();
+        this.status = testTo.getStatus();
+        this.durationInMinutes = testTo.getDurationInMinutes();
+        this.isHomeCollectionAvailable = testTo.getIsHomeCollectionAvailable();
+        this.createdAt = testTo.getCreatedAt();
+        this.updatedAt = testTo.getUpdatedAt();
+        this.id = testTo.getId();
+    
     }
 
     // Getters and Setters

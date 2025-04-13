@@ -14,6 +14,7 @@ import com.sks.MediLabPro.model.MedicalHistory;
 public class AppointmentTo {
 
 	private Long aId;
+	private String appointmentNumber; 
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate appointmentDate;
 	private Double appointmentFee;
@@ -36,6 +37,7 @@ public class AppointmentTo {
 	public AppointmentTo(Appointment appointment) {
 		super();
 		this.aId = appointment.getaId();
+		this.appointmentNumber = appointment.getAppointmentNumber();
 		this.appointmentDate = appointment.getAppointmentDate();
 		this.appointmentFee = appointment.getAppointmentFee();
 		this.reason = appointment.getReason();
@@ -56,6 +58,12 @@ public class AppointmentTo {
 		this.aId = aId;
 	}
 
+	public String getAppointmentNumber() {
+		return appointmentNumber;
+	}
+	public void setAppointmentNumber(String appointmentNumber) {
+		this.appointmentNumber = appointmentNumber;
+	}
 	public LocalDate getAppointmentDate() {
 		return appointmentDate;
 	}

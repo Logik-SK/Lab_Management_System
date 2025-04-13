@@ -1,6 +1,7 @@
 package com.sks.MediLabPro.model;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -8,18 +9,25 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sks.MediLabPro.dto.PatientTo;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostPersist;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Patient {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremented ID
+	@Column(name = "pid", updatable = false, nullable = false)
 	private Long pId;
+
+	@Column(name = "registration_number", unique = true, nullable = true, length = 20)
+	private String registrationNumber; // Unique patient identifier
 
 	private String name;
 	private int age;
@@ -47,6 +55,24 @@ public class Patient {
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 	private List<Report> reports;
 
+	 @PostPersist
+    private void setRegistrationNumber() {
+        if (this.registrationNumber == null) {
+            this.registrationNumber = generateFormattedRegistrationNumber();
+        }
+    }
+
+	private String generateFormattedRegistrationNumber() {
+		String prefix = "PT"; // Updated from "REG" to "PT"
+		String year = String.valueOf(Year.now().getValue()).toString(); // Last 2 digits of year
+		String formattedPid = String.format("%04d", this.pId); // Converts PID to 4-digit format
+		return prefix + "-" + year + "-" + formattedPid; // Example: PT-24-0001
+	}
+
+	public String getRegistrationNumber() {
+		return registrationNumber;
+	}
+
 	public Patient() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -54,6 +80,7 @@ public class Patient {
 
 	public Patient(PatientTo patientTo) {
 		this.pId = patientTo.getpId();
+		this.registrationNumber = patientTo.getRegistrationNumber();
 		this.name = patientTo.getName();
 		this.age = patientTo.getAge();
 		this.status = patientTo.getStatus();

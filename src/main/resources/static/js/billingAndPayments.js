@@ -20,17 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Assuming bill object has id, patientName, amount, and status fields
                 row.innerHTML = `
                     <td>${bill.bId}</td>
+                    <td>${bill.bId}</td>
                     <td>${bill.totalAmount}</td>
                     <td>${bill.finalAmount}</td>
                     <td>${bill.paymentStatus}</td>
                     <td>
-                        <button class="view-btn btn btn-primary btn-sm" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
+                        <button class="view-btn btn btn-primary btn-sm td-btn" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button class="edit-btn btn btn-warning btn-sm" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
+                        <button class="edit-btn btn btn-warning btn-sm td-btn" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="delete-btn btn btn-danger btn-sm" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
+                        <button class="delete-btn btn btn-danger btn-sm td-btn" data-id="${bill.billId}" style="margin-right: 0.3125rem;">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
-function addInvoice() {
+function addBill() {
     fetch('/api/addBill', {
         method: 'POST',
         headers: {

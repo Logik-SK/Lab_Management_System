@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sks.MediLabPro.dto.DoctorTo;
 import com.sks.MediLabPro.model.Appointment;
 import com.sks.MediLabPro.model.Doctor;
 import com.sks.MediLabPro.service.DoctorService;
@@ -30,27 +31,25 @@ public class DoctorController {
 	 * @return
 	 */
 	@GetMapping
-	public ResponseEntity<List<Doctor>> getAllDoctors() {
-		Optional<List<Doctor>> doctor = Optional.ofNullable(doctorService.getAllDoctors());
+	public ResponseEntity<List<DoctorTo>> getAllDoctors() {
+		Optional<List<DoctorTo>> doctorTo = Optional.ofNullable(doctorService.getAllDoctors());
 
-		return doctor.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
+		return doctorTo.filter(list -> !list.isEmpty()).map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
 	}
 
 	/**
 	 * 
-	 * @param doctor
+	 * @param doctorTo
 	 * @return
 	 */
 	@PostMapping
-	public ResponseEntity<Doctor> addDoctors(@RequestBody Doctor doctor) {
-		Optional<Doctor> addedDoctor = Optional.ofNullable(doctorService.addDoctor(doctor));
+	public ResponseEntity<Doctor> addDoctors(@RequestBody DoctorTo doctorTo) {
+		Optional<Doctor> addedDoctor = Optional.ofNullable(doctorService.addDoctor(doctorTo));
 
-		if (addedDoctor.isPresent()) {
-			return ResponseEntity.ok(addedDoctor.get()); // Return the added patient
-		} else {
-			return ResponseEntity.badRequest().build(); // 400 Bad Request if adding fails
-		}
+        // Return the added patient
+        // 400 Bad Request if adding fails
+        return addedDoctor.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
 	}
 
 	/**

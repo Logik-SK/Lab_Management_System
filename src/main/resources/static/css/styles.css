@@ -41,7 +41,18 @@ body {
 	left: 0;
 	transition: width 0.3s ease;
 	z-index: 1020;
+
+	/* Make it scrollable */
+	/* overflow-y: auto;
+	overflow-x: auto; */
+
+	/* Hide scrollbar but keep scroll functionality */
+	/* scrollbar-width: none; 
+	-ms-overflow-style: none;  */
 }
+/* .sidebar::-webkit-scrollbar {
+	display: none; 
+} */
 
 .sidebar.expanded {
 	width: var(--sidebar-width-expanded);
@@ -67,6 +78,21 @@ body {
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 0.3s ease;
+}
+.sidebar:not(.expanded) .section-title {
+	display: none  !important;
+}
+.sidebar .section-title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #ffd700;
+	margin: 1rem 0 0.5rem 1rem;
+	/* margin-left: 1rem; */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: opacity 0.3s ease;
+	
 }
 
 .sidebar.expanded .menu-text {
@@ -135,6 +161,32 @@ footer {
 	/* 10px */
 	color: #ffd700;
 }
+td,
+th {
+	padding: 0.2rem 0.5rem;
+	font-size: 0.8rem;
+	line-height: 1rem;
+	height: 1.5rem;
+	text-align: center;
+}
+
+td,
+th,
+tr {
+	height: 1.2rem;
+	/* Set a consistent row height */
+}
+
+.btn {
+	padding: 0.2rem 0.4rem;
+	font-size: 1rem;
+}
+
+.td-btn {
+	padding: 0.2rem 0.4rem;
+	font-size: 0.5rem; /* Adjusted slightly larger for legibility */
+}
+
 
 @media (max-width: 768px) {
 	.sidebar {

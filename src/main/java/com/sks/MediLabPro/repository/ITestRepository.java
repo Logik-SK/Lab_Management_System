@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TestRepository extends JpaRepository<Test, Long> {
+public interface ITestRepository extends JpaRepository<Test, Long> {
 
     List<Test> findByTestNameContainingIgnoreCase(String testName);
 

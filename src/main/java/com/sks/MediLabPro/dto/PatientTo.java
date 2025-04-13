@@ -1,3 +1,4 @@
+
 package com.sks.MediLabPro.dto;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import com.sks.MediLabPro.model.Patient;
 public class PatientTo {
 
 	private long pId;
+	private String registrationNumber;
 	private String name;
 	private int age;
 	private String status;
@@ -36,6 +38,7 @@ public class PatientTo {
 	public PatientTo(Patient patient) {
 		super();
 		this.pId = patient.getpId();
+		this.registrationNumber = patient.getRegistrationNumber();
 		this.name = patient.getName();
 		this.age = patient.getAge();
 		this.status = patient.getStatus();
@@ -45,6 +48,14 @@ public class PatientTo {
 		this.contact = patient.getContact();
 		this.admissionDate = patient.getAdmissionDate();
 		this.dischargeDate = patient.getDischargeDate();
+	}
+
+	public String getRegistrationNumber() {
+		return registrationNumber;
+	}
+
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
 	}
 
 	public String getName() {

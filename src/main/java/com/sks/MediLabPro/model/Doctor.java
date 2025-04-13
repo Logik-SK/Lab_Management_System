@@ -1,23 +1,22 @@
 package com.sks.MediLabPro.model;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sks.MediLabPro.dto.DoctorTo;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long dId;
+	@Column(name = "doctor_registration_number", unique = true, nullable = true)
+	private String doctorRegistrationNumber;
 	private String name;
 	private String specialization;
 	private String gender;
@@ -43,6 +42,38 @@ public class Doctor {
 	
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
 	private List<Report> reports;
+
+	public Doctor() {
+		super();
+	}
+	public Doctor(DoctorTo doctorTo){
+		this.name=doctorTo.getName();
+		this.specialization=doctorTo.getSpecialization();
+		this.consultationFee=doctorTo.getConsultationFee();
+		this.dateOfBirth=doctorTo.getDateOfBirth();
+		this.department=doctorTo.getDepartment();
+		this.email=doctorTo.getEmail();
+		this.consultationFee=doctorTo.getConsultationFee();
+		this.experience=doctorTo.getExperience();
+		this.licenseNumber=doctorTo.getLicenseNumber();
+
+	}
+	@PostPersist
+	private void setDoctorRegistrationNumber() {
+		if (this.doctorRegistrationNumber == null) {
+			this.doctorRegistrationNumber = generateFormattedRegistrationNumber();
+		}
+	}
+
+	private String generateFormattedRegistrationNumber() {
+		String prefix = "DT"; // Updated from "REG" to "PT"
+		String year = String.valueOf(Year.now().getValue()).toString(); // Last 2 digits of year
+		String formattedPid = String.format("%04d", this.dId);
+		return prefix + "-" + year + "-" + formattedPid;
+	}
+	public String getDoctorRegistrationNumber() {
+		return doctorRegistrationNumber;
+	}
 
 
 	public void setdId(Long dId) {

@@ -62,7 +62,7 @@ public class AppointmentController {
 	 * @param aID
 	 * @return
 	 */
-	@GetMapping("/aID")
+	@GetMapping("/{aID}")
 	public ResponseEntity<Appointment> findAppointmentById(@PathVariable Long aID) {
 		Optional<Appointment> appointment = appointmentService.findAppointmentById(aID);
 		return appointment.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
